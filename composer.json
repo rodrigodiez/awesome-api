@@ -1,0 +1,14 @@
+{
+    "name": "rodrigodiez/awesome-api",
+    "description": "Yet another awesome API",
+    "type": "project",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Rodrigo Diez Villamuera",
+            "email": "rodrigo@rodrigodiez.io"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {}
+}
