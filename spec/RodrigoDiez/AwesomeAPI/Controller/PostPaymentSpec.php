@@ -125,6 +125,20 @@ class PostPaymentSpec extends ObjectBehavior
         $this->index($request);
     }
 
+    function its_index_should_return_a_500_InternalServerError_if_something_goes_wrong_while_saving_on_the_database(Request $request, Connection $db_connection)
+    {
+        $db_connection->insert(Argument::cetera())->willThrow('\Exception');
+
+        $this->index($request)->getStatusCode()->shouldBe(500);
+    }
+
+    function its_index_should_return_a_mostly_useless_error_message_if_something_goes_wrong_while_saving_on_the_database(Request $request, Connection $db_connection)
+    {
+        $db_connection->insert(Argument::cetera())->willThrow('\Exception');
+
+        $this->index($request)->shouldBeJsonError('Oops! Something went wrong. Please try again later');
+    }
+
     public function getMatchers()
     {
         return [

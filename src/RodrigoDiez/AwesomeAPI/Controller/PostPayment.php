@@ -26,13 +26,17 @@ class PostPayment
             }
         }
 
-        $this->db_connection->insert('checks', [
-            'amount' => $request->get('amount'),
-            'table_number' => $request->get('table_number'),
-            'restaurant_location' => $request->get('restaurant_location'),
-            'reference' => $request->get('reference'),
-            'card_type' => $request->get('card_type')
-        ]);
+        try {
+            $this->db_connection->insert('checks', [
+                'amount' => $request->get('amount'),
+                'table_number' => $request->get('table_number'),
+                'restaurant_location' => $request->get('restaurant_location'),
+                'reference' => $request->get('reference'),
+                'card_type' => $request->get('card_type')
+            ]);
+        } catch (\Exception $e) {
+            return new JsonResponse(['error' => 'Oops! Something went wrong. Please try again later'], 500);
+        }
 
         return new JsonResponse(['message' => 'Payment check processed successfully'], 200);
     }
