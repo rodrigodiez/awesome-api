@@ -3,6 +3,9 @@
     "description": "Yet another awesome API",
     "type": "project",
     "license": "MIT",
+    "config": {
+        "bin-dir": "bin"
+    },
     "authors": [
         {
             "name": "Rodrigo Diez Villamuera",
@@ -10,5 +13,16 @@
         }
     ],
     "minimum-stability": "stable",
-    "require": {}
+    "require": {
+        "silex/silex": "~2.0",
+        "doctrine/dbal": "~2.2"
+    },
+    "require-dev": {
+        "phpspec/phpspec": "^3.1"
+    },
+    "autoload": {
+        "psr-0": {
+            "": "src"
+        }
+    }
 }
