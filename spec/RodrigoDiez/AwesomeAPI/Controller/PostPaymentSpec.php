@@ -49,7 +49,7 @@ class PostPaymentSpec extends ObjectBehavior
     {
         $request->get('amount')->willReturn(null);
 
-        $this->index($request)->shouldBeJsonError('amount field is mandatory');
+        $this->index($request)->shouldbeJsonMessage('amount field is mandatory');
     }
 
     function its_index_should_return_a_400_BadRequest_as_status_code_if_table_number_is_missing(Request $request)
@@ -63,7 +63,7 @@ class PostPaymentSpec extends ObjectBehavior
     {
         $request->get('table_number')->willReturn(null);
 
-        $this->index($request)->shouldBeJsonError('table_number field is mandatory');
+        $this->index($request)->shouldbeJsonMessage('table_number field is mandatory');
     }
 
     function its_index_should_return_a_400_BadRequest_as_status_code_if_restaurant_location_is_missing(Request $request)
@@ -77,7 +77,7 @@ class PostPaymentSpec extends ObjectBehavior
     {
         $request->get('restaurant_location')->willReturn(null);
 
-        $this->index($request)->shouldBeJsonError('restaurant_location field is mandatory');
+        $this->index($request)->shouldbeJsonMessage('restaurant_location field is mandatory');
     }
 
     function its_index_should_return_a_400_BadRequest_as_status_code_if_reference_is_missing(Request $request)
@@ -91,7 +91,7 @@ class PostPaymentSpec extends ObjectBehavior
     {
         $request->get('reference')->willReturn(null);
 
-        $this->index($request)->shouldBeJsonError('reference field is mandatory');
+        $this->index($request)->shouldbeJsonMessage('reference field is mandatory');
     }
 
     function its_index_should_return_a_400_BadRequest_as_status_code_if_card_type_is_missing(Request $request)
@@ -140,19 +140,12 @@ class PostPaymentSpec extends ObjectBehavior
     {
         $db_connection->insert(Argument::cetera())->willThrow('\Exception');
 
-        $this->index($request)->shouldBeJsonError('Oops! Something went wrong. Please try again later');
+        $this->index($request)->shouldbeJsonMessage('Oops! Something went wrong. Please try again later');
     }
 
     public function getMatchers()
     {
         return [
-            'beJsonError' => function($response, $error) {
-
-                $response_data = json_decode($response->getContent(), true);
-
-                return $response_data['error'] == $error;
-            },
-
             'beJsonMessage' => function($response, $message) {
 
                 $response_data = json_decode($response->getContent(), true);

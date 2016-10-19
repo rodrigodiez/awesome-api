@@ -22,7 +22,7 @@ class PostPayment
 
         foreach ($required_fields as $required_field) {
             if ($request->get($required_field) === null) {
-                return new JsonResponse(['error' => sprintf("%s field is mandatory", $required_field)], 400);
+                return new JsonResponse(['message' => sprintf("%s field is mandatory", $required_field)], 400);
             }
         }
 
@@ -36,7 +36,7 @@ class PostPayment
                 'gratuity' => $request->get('gratuity')
             ]);
         } catch (\Exception $e) {
-            return new JsonResponse(['error' => 'Oops! Something went wrong. Please try again later'], 500);
+            return new JsonResponse(['message' => 'Oops! Something went wrong. Please try again later'], 500);
         }
 
         return new JsonResponse(['message' => 'Payment check processed successfully'], 200);
