@@ -18,6 +18,7 @@ class PostPaymentSpec extends ObjectBehavior
         $request->get('restaurant_location')->willReturn(2);
         $request->get('reference')->willReturn('foo');
         $request->get('card_type')->willReturn('visa');
+        $request->get('gratuity')->willReturn(5);
 
         $this->beConstructedWith($db_connection);
     }
@@ -107,19 +108,22 @@ class PostPaymentSpec extends ObjectBehavior
         $restaurant_location = 2;
         $reference = 'foo';
         $card_type = 'visa';
+        $gratuity = 5;
 
         $request->get('amount')->willReturn($amount);
         $request->get('table_number')->willReturn($table_number);
         $request->get('restaurant_location')->willReturn($restaurant_location);
         $request->get('reference')->willReturn($reference);
         $request->get('card_type')->willReturn($card_type);
+        $request->get('gratuity')->willReturn($gratuity);
 
         $db_connection->insert('checks', [
             'amount' => $amount,
             'table_number' => $table_number,
             'restaurant_location' => $restaurant_location,
             'reference' => $reference,
-            'card_type' => $card_type
+            'card_type' => $card_type,
+            'gratuity' => $gratuity
         ])->shouldBeCalled();
 
         $this->index($request);

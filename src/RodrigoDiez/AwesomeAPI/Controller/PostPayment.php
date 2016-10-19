@@ -32,7 +32,8 @@ class PostPayment
                 'table_number' => $request->get('table_number'),
                 'restaurant_location' => $request->get('restaurant_location'),
                 'reference' => $request->get('reference'),
-                'card_type' => $request->get('card_type')
+                'card_type' => $request->get('card_type'),
+                'gratuity' => $request->get('gratuity')
             ]);
         } catch (\Exception $e) {
             return new JsonResponse(['error' => 'Oops! Something went wrong. Please try again later'], 500);
