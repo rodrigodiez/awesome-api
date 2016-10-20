@@ -1,0 +1,26 @@
+version: '2'
+
+services:
+  web:
+    build: .
+    ports:
+      - "80:80"
+    links:
+      - "db:db"
+    environment:
+      - API_TOKEN=123456
+      - DB_HOST=db
+      - DB_NAME=awesome_api
+      - DB_USERNAME=awesome_api_rw
+      - DB_PASSWORD=123456
+    volumes:
+      - ./:/var/www/html
+  db:
+    image: mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=123456
+      - MYSQL_DATABASE=awesome_api
+      - MYSQL_USER=awesome_api_rw
+      - MYSQL_PASSWORD=123456
+    volumes:
+      - ./schema.sql:/docker-entrypoint-initdb.d/schema.sql
