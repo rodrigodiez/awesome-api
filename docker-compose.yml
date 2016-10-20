@@ -13,8 +13,6 @@ services:
       - DB_NAME=awesome_api
       - DB_USERNAME=awesome_api_rw
       - DB_PASSWORD=123456
-    volumes:
-      - ./:/var/www/html
   db:
     image: mysql
     environment:

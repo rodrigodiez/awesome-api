@@ -38,8 +38,7 @@ class PaymentController
                 'gratuity' => $request->get('gratuity')
             ]);
         } catch (\Exception $e) {
-            return $this->response_factory->createServerError($e->getMessage());
-            // return $this->response_factory->createServerError('Oops! Something went wrong. Please try again later');
+            return $this->response_factory->createServerError('Oops! Something went wrong. Please try again later');
         }
 
         return $this->response_factory->createSuccessfull('Payment check processed successfully');
