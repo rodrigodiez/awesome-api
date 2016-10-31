@@ -31,4 +31,5 @@ $app->before(function (Symfony\Component\HttpFoundation\Request $request, Silex\
 });
 
 $app->post('payment', 'payment.controller:post');
+$app->get('payment', 'payment.controller:get');
 $app->run();
