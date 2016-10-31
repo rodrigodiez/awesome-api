@@ -25,3 +25,18 @@ $ curl --data "api_token=123456" http://localhost/payment
 ```
 curl --data "api_token=123456&amount=10.10&table_number=42&restaurant_location=101&reference=foo&card_type=visa" http://localhost/payment
 ```
+
+# How to request a report for all locations
+```
+curl http://localhost/payment\?api_token\=123456
+```
+
+# How to request a report for one location
+```
+curl http://localhost/payment\?api_token\=123456\&restaurant_location=101
+```
+
+# How to run tests
+```
+docker-compose exec web bin/phpspec run
+```
